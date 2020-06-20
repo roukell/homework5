@@ -1,10 +1,24 @@
 // display current time and date on schedule
 const currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-console.log(currentTime);
+// console.log(currentTime);
 
 const timeDisplay = $("<p>");
 timeDisplay.text(currentTime);
 $(currentDay).append(timeDisplay);
+
+let currentHour = moment().format('H');
+console.log(currentHour);
+
+
+// retrieve stored todos from localStorage
+let storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
+
+if (storedPlans !== null) {
+    planTextArr = storedPlans;
+} else {
+    planTextArr = new Array(9);
+    planTextArr[4] = "Lunch break";
+}
 
 // create rows and columns from 09:00 to 17:00
 for (let hour = 9; hour <= 17; hour++) {
@@ -49,7 +63,8 @@ for (let hour = 9; hour <= 17; hour++) {
     inputBox.attr("class", "inputBox");
 
     // access index from data array for hour
-    // inputBox.val(planTextArr[index]);
+    inputBox.val(planTextArr[index]);
+    // console.log(planTextArr[index]);
 
     // create col to put inputBox
     let inputBoxDiv = $("<div>");
@@ -59,21 +74,44 @@ for (let hour = 9; hour <= 17; hour++) {
     rows.append(inputBoxDiv);
     inputBoxDiv.append(inputBox);
 
+
     // // create button to save input
     const saveBtn = $("<button>")
-    const saveIcon = "Assets/save-icon.png";
     saveBtn.attr("id", `saveid-${index}`);
     saveBtn.attr("save-id", index);
     saveBtn.attr("class", "far fa-save saveIcon");
-    saveBtn.css("font-size", "48px");
+    saveBtn.css("font-size", "auto");
     
-    
-
     // // append saveBtn
     rows.append(saveBtn);
 
-
-
-
+// change background color accoring to current time.
+    if (currentHour > hour) {
+        // past hours are grey
+        inputBoxDiv.css("background-color", "lightgrey");
+    }
+    else if (currentHour < hour) {
+        // future hours are purple
+        inputBoxDiv.css("background-color", "rgb(222, 191, 243)");
+    } 
+    else {
+        // current hour is green
+        inputBoxDiv.css("background-color", "lightgreen");
+    }
 }
+
+
+// when click on saveBtn, save todos to localStorage
+$("button.saveIcon").on("click", function (event) {
+    event.preventDefault();
+    let $index = $(this).attr("save-id");
+    let inputId = `#input-` + $index;
+    let $value = $(inputId).val();
+
+    planTextArr[$index] = $value;
+
+    localStorage.setItem("storedPlans", JSON.stringify(planTextArr));
+
+})
+
 
