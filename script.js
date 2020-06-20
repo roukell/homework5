@@ -88,11 +88,11 @@ for (let hour = 9; hour <= 17; hour++) {
 // change background color accoring to current time.
     if (currentHour > hour) {
         // past hours are grey
-        inputBoxDiv.css("background-color", "lightgrey");
+        inputBoxDiv.css("background-color", "rgb(230, 230, 230)");
     }
     else if (currentHour < hour) {
         // future hours are purple
-        inputBoxDiv.css("background-color", "rgb(222, 191, 243)");
+        inputBoxDiv.css("background-color", "rgb(222, 200, 260)");
     } 
     else {
         // current hour is green
@@ -102,7 +102,7 @@ for (let hour = 9; hour <= 17; hour++) {
 
 
 // when click on saveBtn, save todos to localStorage
-$("button.saveIcon").on("click", function (event) {
+$("button").on("click", function (event) {
     event.preventDefault();
     let $index = $(this).attr("save-id");
     let inputId = `#input-` + $index;
