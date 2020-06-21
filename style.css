@@ -20,7 +20,7 @@ textarea{
   border-radius: 0;
   border-bottom: 3px dotted lightslategray;
   font-family: 'Julius Sans One', sans-serif;
-  background-image: url("background.png");
+  background-image: url("Assets/background.png");
 }
 
 .description{
