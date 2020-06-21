@@ -56,11 +56,13 @@ for (let hour = 9; hour <= 17; hour++) {
     timeBoxSpn.text(`${displayedHour} ${ampm}`);
 
     // create input portion for user to type in plans
-    const inputBox = $("<input>");
+    const inputBox = $("<textarea>");
     inputBox.attr("id",`input-${index}`);
     inputBox.attr("hour-index", index);
     inputBox.attr("type", "text");
     inputBox.attr("class", "inputBox");
+    inputBox.attr("rows", 3);
+    inputBox.attr("cols", 20);
 
     // access index from data array for hour
     inputBox.val(planTextArr[index]);

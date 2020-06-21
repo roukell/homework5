@@ -85,10 +85,10 @@ textarea{
 }
 
 .inputBox {
-  height: 80px;
-  width: 250px;
+  
   border-color: transparent;
   background-color: transparent;
+  resize: horizontal;
 }
 
 .col-9 {
@@ -114,6 +114,10 @@ textarea{
   padding: auto;
   justify-content: center;
   text-align: center;
+}
+
+.container {
+  margin-bottom: 3%;
 }
 
 /* For mobile phones: */
